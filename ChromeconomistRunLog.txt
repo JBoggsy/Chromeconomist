@@ -1,0 +1,126 @@
+Lands: ['Midnight Marsh', "Cote d'Azure", 'Turquoise Moors']
+JSON info loaded
+Connected to Reddit
+Midnight Marsh: Wed Sep 10 18:21:18 2014
+Current sub: MidnightMarsh
+  Comment generator:<generator object get_content at 0xb2852464>
+    Arrived at placeholder!
+
+Cote d'Azure: Wed Sep 10 18:21:22 2014
+Current sub: cote_dazur
+  Comment generator:<generator object get_content at 0xb2852464>
+Turquoise Moors: Wed Sep 10 18:21:23 2014
+Current sub: TurquoiseMoors
+  Comment generator:<generator object get_content at 0xb2852464>
+    Arrived at placeholder!
+
+PMs: Wed Sep 10 18:21:27 2014
+User production: Wed Sep 10 18:21:27 2014
+    Producing material for red_october42
+    Land bonus: luxury
+    Land penalty: material
+    Bonus multiplier: 0.5
+    Produced resources: 0.5 material
+    Producing material for redis213
+    Land bonus: food
+    Land penalty: material
+    Bonus multiplier: 0.5
+    Produced resources: 0.5 material
+    Producing food for eliminioa
+    Land bonus: food
+    Land penalty: material
+    Bonus multiplier: 1.5
+    Produced resources: 1.5 food
+    Producing material for captaincrunchie
+    Land bonus: food
+    Land penalty: material
+    Bonus multiplier: 0.5
+    Produced resources: 0.5 material
+    Producing material for elaifiknow
+    Land bonus: food
+    Land penalty: material
+    Bonus multiplier: 0.5
+    Produced resources: 0.5 material
+    Producing material for myductape
+    Land bonus: food
+    Land penalty: material
+    Bonus multiplier: 0.5
+    Produced resources: 0.5 material
+    Producing material for zthousand
+    Land bonus: food
+    Land penalty: material
+    Bonus multiplier: 0.5
+    Produced resources: 0.5 material
+    Producing material for naughtypenguin
+    Land bonus: food
+    Land penalty: material
+    Bonus multiplier: 0.5
+    Produced resources: 0.5 material
+    Producing material for meshugganah
+    Land bonus: food
+    Land penalty: material
+    Bonus multiplier: 0.5
+    Produced resources: 0.5 material
+    Producing material for twilight_octavia
+    Land bonus: food
+    Land penalty: material
+    Bonus multiplier: 0.5
+    Produced resources: 0.5 material
+    Producing material for sahdee
+    Land bonus: material
+    Land penalty: food
+    Bonus multiplier: 1.5
+    Produced resources: 1.5 material
+    Producing material for danster21
+    Land bonus: food
+    Land penalty: material
+    Bonus multiplier: 0.5
+    Produced resources: 0.5 material
+    Producing food for itking86
+    Land bonus: food
+    Land penalty: material
+    Bonus multiplier: 1.5
+    Produced resources: 1.5 food
+    Producing material for cdos93
+    Land bonus: food
+    Land penalty: luxury
+    Bonus multiplier: 1
+    Produced resources: 1 material
+    Producing material for lolzrfunni
+    Land bonus: material
+    Land penalty: food
+    Bonus multiplier: 1.5
+    Produced resources: 1.5 material
+Midnight Marsh: Wed Sep 10 18:22:28 2014
+Current sub: MidnightMarsh
+  Comment generator:<generator object get_content at 0xb29b6784>
+    Arrived at placeholder!
+
+Cote d'Azure: Wed Sep 10 18:22:31 2014
+Current sub: cote_dazur
+  Comment generator:<generator object get_content at 0xb28713c4>
+Turquoise Moors: Wed Sep 10 18:22:32 2014
+Current sub: TurquoiseMoors
+  Comment generator:<generator object get_content at 0xb28713c4>
+    Arrived at placeholder!
+
+PMs: Wed Sep 10 18:22:38 2014
+Command parts: [u'balance']
+    Command time: Thu Sep 11 06:21:46 2014
+    Parsed command as ['eliminioa', u'balance', [], 1410416506.0, <praw.objects.Message object at 0xb2835c4c>]
+User production: Wed Sep 10 18:22:40 2014
+  User red_october42 has already produced something this hour.
+  User redis213 has already produced something this hour.
+  User eliminioa has already produced something this hour.
+  User captaincrunchie has already produced something this hour.
+  User elaifiknow has already produced something this hour.
+  User myductape has already produced something this hour.
+  User zthousand has already produced something this hour.
+  User naughtypenguin has already produced something this hour.
+  User meshugganah has already produced something this hour.
+  User twilight_octavia has already produced something this hour.
+  User sahdee has already produced something this hour.
+  User danster21 has already produced something this hour.
+  User itking86 has already produced something this hour.
+  User cdos93 has already produced something this hour.
+  User lolzrfunni has already produced something this hour.
