@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #-------------------------------------------------------------------------------
 # Name:        module1
 # Purpose:
@@ -21,10 +23,10 @@ class bot(object):
         self.log = open("ChromeconomistRunLog.txt","w+")
         self.lands = ["Midnight Marsh","Cote d'Azure","Turquoise Moors"]
         bot.log(self,"Lands: "+self.lands.__str__())
-        self.landProduction = EconomistInfo["LandInfo"]
+        self.landInfo = EconomistInfo["LandInfo"]
         self.userInfo = EconomistInfo["UserInfo"]
         self.itemInfo = EconomistInfo["ItemInfo"]
-        self.data = {"LandInfo":self.landProduction,"UserInfo":self.userInfo,"ItemInfo":self.itemInfo}
+        self.data = {"LandInfo":self.landInfo,"UserInfo":self.userInfo,"ItemInfo":self.itemInfo}
         bot.log(self,"JSON info loaded")
         self.r = reddit
         bot.log(self,"Connected to Reddit")
@@ -42,7 +44,7 @@ class bot(object):
         comments = self.r.get_comments(self.curSub,limit=None)
         bot.log(self,"  Comment generator:" +comments.__str__())
         BotCommands = [] #bot command will be a list [author(str),action,resource]
-        placeholder_ID = self.landProduction[land]["placeholder_ID"]
+        placeholder_ID = self.landInfo[land]["placeholder_ID"]
         for comment in comments:
             if comment.id == placeholder_ID:
                 bot.log(self,"    Arrived at placeholder!\n")
@@ -53,12 +55,12 @@ class bot(object):
                 if len(BotCommands) == 0: #stores the comment id of the first new comment for reference
                     ref_id = comment.id
                     bot.log(self,"  Updated placeholder id to "+str(ref_id)+" @ "+str(time.asctime(time.gmtime(comment.created))))
-                    self.landProduction[land]["placeholder_ID"] = ref_id
-                    self.data["LandInfo"] = self.landProduction
+                    self.landInfo[land]["placeholder_ID"] = ref_id
+                    self.data["LandInfo"] = self.landInfo
                 if str(comment.author).lower() not in self.userInfo:
                     print ("User "+str(comment.author).lower()+" not found")
                     bot.log(self,"  User "+str(comment.author).lower()+" not found, alerting")
-                    comment.reply('User not found! Please register for the Chromeconomist bot [here](http://redd.it/'+self.recruit_link+')')
+                    comment.reply('User not found! Please register for the Chromeconomist bot [here](http://redd.it/'+self.recruit_id+')')
                 bot.log(self,"  New command found: "+comment.__str__())
                 rawCmd = comment.body.splitlines()
                 for line in rawCmd:
@@ -171,15 +173,15 @@ class bot(object):
 
     #this function credits a user with produced goods every iteration
     def produce(self,author):
-        if time.time() < self.userInfo[author]["last_produced"]+300:
+        if time.time() < self.userInfo[author]["last_produced"]+60:
             bot.log(self,"  User "+author+" has already produced something this hour.")
             return False
         self.userInfo[author]["last_produced"] = time.time()
         resource = self.userInfo[author]["producing"]
         bot.log(self,"    Producing "+resource+" for "+author)
-        bonus = self.landProduction[self.userInfo[author]["home"]]["bonus"]
+        bonus = self.landInfo[self.userInfo[author]["home"]]["bonus"]
         bot.log(self,"    Land bonus: "+bonus)
-        penalty = self.landProduction[self.userInfo[author]["home"]]['penalty']
+        penalty = self.landInfo[self.userInfo[author]["home"]]['penalty']
         bot.log(self,"    Land penalty: "+penalty)
         #this part determines whether the amount a user receives is influenced by their homeland
         if bonus == resource:
@@ -188,11 +190,11 @@ class bot(object):
             bonusNum = .5
         else:
             bonusNum = 1
-        for bonus_item in self.itemInfo["bonus_items"]: # this part needs work. Needs to apply production bonus to the right resource(s)
+        for bonus_item in self.itemInfo["craftBuffs"]: # this part needs work. Needs to apply production bonus to the right resource(s)
             if bonus_item in self.userInfo[author]:
                 BICount = self.userInfo[author][bonus_item]#amount of the bonus item user has
-                bonusNum += self.itemInfo["bonus_items"][bonus_item] * BICount
-                bot.log(self,"    "+author+" has "+str(BICount)+" "+bonus_item+"s, which grants them "+str(self.itemInfo["bonus_items"][bonus_item] * BICount)+" more production!")
+                bonusNum += self.itemInfo["craftBuffs"][bonus_item] * BICount
+                bot.log(self,"    "+author+" has "+str(BICount)+" "+bonus_item+"s, which grants them "+str(self.itemInfo["craftBuffs"][bonus_item] * BICount)+" more production!")
         bot.log(self,"    Bonus multiplier: "+bonusNum.__str__())
         bounty = 1*bonusNum
         bot.log(self,"    Produced resources: "+bounty.__str__()+" "+resource)
@@ -213,6 +215,8 @@ class bot(object):
             return None
         bot.log(self,"    Item cost: "+str(itemCost))
         good_for_it = True #can the user pay for it?
+        
+        #actually make the user pay for it
         for material in itemCost:
             count = float(itemCost[material])*amount
             bot.log(self,"    "+item+" requires "+str(count)+' '+self.i.plural_noun(material,count))
@@ -230,13 +234,26 @@ class bot(object):
             for material in itemCost:
                 self.userInfo[author][material] -= int(itemCost[material])*amount #takes away cost for each item before crediting
                 bot.log(self,"    User's new amount of "+self.i.plural_noun(material,userAmount)+" is "+str(userAmount))
+                
+                #debuffs a region if the material used was a buffer
+                if material in self.itemInfo['combatBuffs'].keys():
+                    buffedLand = self.userInfo[author]['home'] #get the land to be buffed, based on the creator's homeland
+                    self.landInfo[buffedLand]['DEFbuff'] -= self.itemInfo['combatBuffs'][material] * int(itemCost[material])*amount #add the proper buff to the land
+                
         if good_for_it:
+            if item not in self.userInfo[author].keys():
+                self.userInfo[author][item] = 0
             self.userInfo[author][item] = self.userInfo[author][item] + amount #credits item to user
             self.data["UserInfo"] = self.userInfo
             bot.log(self,"    Credited "+str(amount)+" "+self.i.plural_noun(item,amount)+" to "+author)
             comment.reply("You have successfully created "+str(amount)+" "+self.i.plural_noun(item,amount)+" for "+str(count)+" "+self.i.plural_noun(material,count)+"!")
             print (author + " successfully created "+str(amount)+" "+self.i.plural_noun(item,amount)+" for "+str(count)+" "+self.i.plural_noun(material,count)+"!")
             bot.log(self,"    Sent completion message to "+author)
+            
+            #this part checks to see if the item created is a buff giving item like a wall
+            if item in self.itemInfo['combatBuffs'].keys():
+                buffedLand = self.userInfo[author]['home'] #get the land to be buffed, based on the creator's homeland
+                self.landInfo[buffedLand]['DEFbuff'] += self.itemInfo['combatBuffs'][item] * amount #add the proper buff to the land
         else:
             print "User not good for it."
 
@@ -301,13 +318,37 @@ class bot(object):
         bot.log(self,"    Type of item to be traded out: "+outItem)
         #add the inbound items to the recipient's inventory
         try: self.userInfo[author][inItem] += inCount
-        except: self.userInfo[author][inItem] = inCount
+        except: self.userInfo[author][inItem] = inCount    
+        
+        #this part checks to see if the item traded is a buff giving item like a wall
+        if inItem in self.itemInfo['combatBuffs'].keys():
+            #get the land to be buffed, based on the creator's homeland
+            buffedLand = self.userInfo[author]['home'] 
+            
+            #add the proper buff to the land
+            self.landInfo[buffedLand]['DEFbuff'] += self.itemInfo['combatBuffs'][inItem] * inCount 
+            
         #add the outbound items to the initiator's inventory
         try: self.userInfo[tAuthor][outItem] += outCount
         except: self.userInfo[tAuthor][outItem] = outCount
+
+        #this part checks to see if the item traded is a buff giving item like a wall
+        if outItem in self.itemInfo['combatBuffs'].keys():
+            #get the land to be buffed, based on the creator's homeland
+            buffedLand = self.userInfo[tAuthor]['home'] 
+            
+            #add the proper buff to the land
+            self.landInfo[buffedLand]['DEFbuff'] += self.itemInfo['combatBuffs'][outItem] * outCount
+            
         #subtract the outbound items from the users' inventories
         self.userInfo[author][outItem] -= outCount
+        if outItem in self.itemInfo['combatBuffs'].keys():
+            buffedLand = self.userInfo[author]['home'] 
+            self.landInfo[buffedLand]['DEFbuff'] -= self.itemInfo['combatBuffs'][outItem] * outCount
         self.userInfo[tAuthor][inItem] -= inCount
+        if inItem in self.itemInfo['combatBuffs'].keys():
+            buffedLand = self.userInfo[tAuthor]['home'] 
+            self.landInfo[buffedLand]['DEFbuff'] -= self.itemInfo['combatBuffs'][inItem] * outCount
         self.data["UserInfo"] = self.userInfo
         tComment.reply('Trade completed!')
 
@@ -338,7 +379,7 @@ class bot(object):
                     base = raw_base.strip('#')
                     base = base.replace('-',' ')
                     base = base.replace('_',' ')
-                    if base not in self.landProduction.keys():
+                    if base not in self.landInfo.keys():
                         base = 'Midnight Marsh'
                         cmnt.reply('No base set, defaulting to the [Midnight Marsh](/r/MidnightMarsh)')
                 except ValueError:
@@ -350,7 +391,6 @@ class bot(object):
                 cmnt.reply('You have now registered as a citizen in '+base+'! By default, you are producing material goods.')
         self.data["UserInfo"] = self.userInfo
 
-
     def iterate(self):
         bot.register(self)
         chromaData = open("EconomyInfo.json",'w')
@@ -359,7 +399,7 @@ class bot(object):
         while True:
             for land in self.lands:
                 bot.log(self,land+': '+(time.asctime()))
-                self.landStats = self.landProduction[land]
+                self.landStats = self.landInfo[land]
                 bot.parseLand(self,land)
                 chromaData = open("EconomyInfo.json",'w')
                 json.dump(self.data,chromaData)
