@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 #-------------------------------------------------------------------------------
 # Name:        module1
@@ -21,7 +22,7 @@ from inflect import *
 class bot(object):
     def __init__ (self, reddit,EconomistInfo):
         self.log = open("ChromeconomistRunLog.txt","w+")
-        self.lands = ["Midnight Marsh","Cote d'Azure","Turquoise Moors"]
+        self.lands = ["Midnight Marsh","Cote d'Azure","Oraistedearg"]
         bot.log(self,"Lands: "+self.lands.__str__())
         self.landInfo = EconomistInfo["LandInfo"]
         self.userInfo = EconomistInfo["UserInfo"]
@@ -379,11 +380,14 @@ class bot(object):
                     base = raw_base.strip('#')
                     base = base.replace('-',' ')
                     base = base.replace('_',' ')
+                    base = base.replace('/r/','')
+                    base = base.replace('r/','')
+                    base = base.lower()
                     if base not in self.landInfo.keys():
-                        base = 'Midnight Marsh'
+                        base = 'midnight marsh'
                         cmnt.reply('No base set, defaulting to the [Midnight Marsh](/r/MidnightMarsh)')
                 except ValueError:
-                    base = 'Midnight Marsh'
+                    base = 'midnight marsh'
                     cmnt.reply('No base set, defaulting to the [Midnight Marsh](/r/MidnightMarsh)')
                 print ("Adding new user "+str(cmnt.author).lower()+" to userInfo with citizenship in "+base+"!")
                 bot.log(self,"Adding new user "+str(cmnt.author).lower()+" to userInfo with citizenship in "+base+"!")
