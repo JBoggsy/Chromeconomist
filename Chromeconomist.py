@@ -12,6 +12,7 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 
+import EconBuffs
 import time
 import datetime
 import praw
@@ -22,7 +23,7 @@ from inflect import *
 class bot(object):
     def __init__ (self, reddit,EconomistInfo):
         self.log = open("ChromeconomistRunLog.txt","w+")
-        self.lands = ["Midnight Marsh","Cote d'Azure","Oraistedearg"]
+        self.lands = ["midnight marsh","cote d'azure","oraistedearg"]
         bot.log(self,"Lands: "+self.lands.__str__())
         self.landInfo = EconomistInfo["LandInfo"]
         self.userInfo = EconomistInfo["UserInfo"]
