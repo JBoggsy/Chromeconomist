@@ -1,407 +1,67 @@
-Lands: ['Midnight Marsh', "Cote d'Azure", 'Turquoise Moors']
+Lands: [u'aegisimperial', u'sapphiredistrict', u'fortiris', u'viperspeak', u'midnightmarsh', u'republicofbezold', u'areusantris', u'oraistedearg', u'kyanitecove', u'pervinca', u'snooland', u'amethystcove', u'greataurantiaco', u'raiderspinnacle', u'metropolisdaja', u'chromehenge', u'nordwalder', u'periwingrove', u'newcerulean', u'pastorange', u'islandofwarriors', u'turquoisemoors', u'orangelondo', u'tentorahogo', u'cotedazure', u'novumpersarum']
 JSON info loaded
 Connected to Reddit
-Midnight Marsh: Sun Dec 14 14:18:37 2014
+Adding new user dana_shea to userInfo with citizenship in newcerulean!
+aegisimperial: Tue Dec 16 13:01:43 2014
+Current sub: Aegis_Imperial
+  Comment generator:<generator object get_content at 0xb2fc87fc>
+  Updated placeholder id to clwyv4f @ Sat Nov  8 22:52:07 2014
+    Arrived at placeholder!
+
+sapphiredistrict: Tue Dec 16 13:01:46 2014
+Current sub: SapphireDistrict
+  Comment generator:<generator object get_content at 0xb311748c>
+  Updated placeholder id to cmuvjyq @ Mon Dec 15 05:53:01 2014
+    Arrived at placeholder!
+
+fortiris: Tue Dec 16 13:01:48 2014
+Current sub: FortIris
+  Comment generator:<generator object get_content at 0xb311748c>
+  Updated placeholder id to cmwd2ep @ Tue Dec 16 15:08:51 2014
+    Arrived at placeholder!
+
+viperspeak: Tue Dec 16 13:01:49 2014
+Current sub: VipersPeak
+  Comment generator:<generator object get_content at 0xb311748c>
+  Updated placeholder id to cm8lbvu @ Fri Nov 21 02:34:32 2014
+    Arrived at placeholder!
+
+midnightmarsh: Tue Dec 16 13:01:52 2014
 Current sub: MidnightMarsh
-  Comment generator:<generator object get_content at 0xb2fff824>
+  Comment generator:<generator object get_content at 0xb311748c>
+  Updated placeholder id to cjm40iv @ Sun Aug 10 10:44:33 2014
     Arrived at placeholder!
 
-Cote d'Azure: Sun Dec 14 14:18:41 2014
-Current sub: cote_dazur
-  Comment generator:<generator object get_content at 0xb2fff824>
+republicofbezold: Tue Dec 16 13:01:53 2014
+Current sub: RepublicofBezold
+  Comment generator:<generator object get_content at 0xb2ffd52c>
+  Updated placeholder id to clxn1ah @ Sun Nov  9 19:06:27 2014
     Arrived at placeholder!
 
-Turquoise Moors: Sun Dec 14 14:18:43 2014
-Current sub: TurquoiseMoors
-  Comment generator:<generator object get_content at 0xb2fff824>
+areusantris: Tue Dec 16 13:01:56 2014
+Current sub: AreusAntris
+  Comment generator:<generator object get_content at 0xb2ffbe3c>
+  Updated placeholder id to cmbaeex @ Mon Nov 24 03:58:09 2014
     Arrived at placeholder!
 
-PMs: Sun Dec 14 14:18:46 2014
-User production: Sun Dec 14 14:18:46 2014
-    Producing material for red_october42
-    Land bonus: luxury
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for redis213
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for eliminioa
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for captaincrunchie
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for elaifiknow
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for myductape
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for zthousand
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for naughtypenguin
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for meshugganah
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for twilight_octavia
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for sahdee
-    Land bonus: material
-    Land penalty: food
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 material
-    Producing material for danster21
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing food for itking86
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 food
-    Producing material for cdos93
-    Land bonus: food
-    Land penalty: luxury
-    Bonus multiplier: 1
-    Produced resources: 1 material
-    Producing material for lolzrfunni
-    Land bonus: material
-    Land penalty: food
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 material
-Midnight Marsh: Sun Dec 14 14:19:47 2014
-Current sub: MidnightMarsh
-  Comment generator:<generator object get_content at 0xb3001e8c>
+oraistedearg: Tue Dec 16 13:01:57 2014
+Current sub: Oraistedearg
+  Comment generator:<generator object get_content at 0xb2ffb8ec>
+  Updated placeholder id to cmvl8b8 @ Tue Dec 16 00:22:04 2014
     Arrived at placeholder!
 
-Cote d'Azure: Sun Dec 14 14:19:49 2014
-Current sub: cote_dazur
-  Comment generator:<generator object get_content at 0xb317fe64>
+kyanitecove: Tue Dec 16 13:02:00 2014
+Current sub: kyanitecove
+  Comment generator:<generator object get_content at 0xb2fc811c>
+  Updated placeholder id to cmw6lxi @ Tue Dec 16 11:01:47 2014
     Arrived at placeholder!
 
-Turquoise Moors: Sun Dec 14 14:19:51 2014
-Current sub: TurquoiseMoors
-  Comment generator:<generator object get_content at 0xb307c39c>
+pervinca: Tue Dec 16 13:02:02 2014
+Current sub: Pervinca
+  Comment generator:<generator object get_content at 0xb300e374>
+  Updated placeholder id to cmihfl4 @ Tue Dec  2 02:24:23 2014
     Arrived at placeholder!
 
-PMs: Sun Dec 14 14:19:57 2014
-Command parts: [u'create', u'5', u'stone']
-    Command time: Mon Dec 15 03:18:56 2014
-    Parsed command as ['eliminioa', u'create', [u'5', u'stone'], 1418613536.0, <praw.objects.Message object at 0xb30e046c>]
-User eliminioa is creating 5 stones
-    Item to be created: stone
-    Amount to be created: 5
-    Item cost: {u'material': 1}
-    stone requires 5.0 materials
-    User has 85.5 materials
-    User's new amount of materials is 85.5
-    Credited 5 stones to eliminioa
-    Sent completion message to eliminioa
-User production: Sun Dec 14 14:19:59 2014
-    Producing material for red_october42
-    Land bonus: luxury
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for redis213
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for eliminioa
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for captaincrunchie
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for elaifiknow
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for myductape
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for zthousand
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for naughtypenguin
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for meshugganah
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for twilight_octavia
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for sahdee
-    Land bonus: material
-    Land penalty: food
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 material
-    Producing material for danster21
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing food for itking86
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 food
-    Producing material for cdos93
-    Land bonus: food
-    Land penalty: luxury
-    Bonus multiplier: 1
-    Produced resources: 1 material
-    Producing material for lolzrfunni
-    Land bonus: material
-    Land penalty: food
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 material
-Midnight Marsh: Sun Dec 14 14:20:59 2014
-Current sub: MidnightMarsh
-  Comment generator:<generator object get_content at 0xb2f0357c>
-    Arrived at placeholder!
-
-Cote d'Azure: Sun Dec 14 14:21:02 2014
-Current sub: cote_dazur
-  Comment generator:<generator object get_content at 0xb300189c>
-    Arrived at placeholder!
-
-Turquoise Moors: Sun Dec 14 14:21:04 2014
-Current sub: TurquoiseMoors
-  Comment generator:<generator object get_content at 0xb30014dc>
-    Arrived at placeholder!
-
-PMs: Sun Dec 14 14:21:09 2014
-Command parts: [u'create', u'45', u'stone']
-    Command time: Mon Dec 15 03:20:30 2014
-    Parsed command as ['eliminioa', u'create', [u'45', u'stone'], 1418613630.0, <praw.objects.Message object at 0xb2e67ecc>]
-User eliminioa is creating 45 stones
-    Item to be created: stone
-    Amount to be created: 45
-    Item cost: {u'material': 1}
-    stone requires 45.0 materials
-    User has 81.0 materials
-    User's new amount of materials is 81.0
-    Credited 45 stones to eliminioa
-    Sent completion message to eliminioa
-User production: Sun Dec 14 14:21:11 2014
-    Producing material for red_october42
-    Land bonus: luxury
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for redis213
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for eliminioa
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for captaincrunchie
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for elaifiknow
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for myductape
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for zthousand
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for naughtypenguin
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for meshugganah
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for twilight_octavia
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for sahdee
-    Land bonus: material
-    Land penalty: food
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 material
-    Producing material for danster21
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing food for itking86
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 food
-    Producing material for cdos93
-    Land bonus: food
-    Land penalty: luxury
-    Bonus multiplier: 1
-    Produced resources: 1 material
-    Producing material for lolzrfunni
-    Land bonus: material
-    Land penalty: food
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 material
-Midnight Marsh: Sun Dec 14 14:22:11 2014
-Current sub: MidnightMarsh
-  Comment generator:<generator object get_content at 0xb2e100f4>
-    Arrived at placeholder!
-
-Cote d'Azure: Sun Dec 14 14:22:14 2014
-Current sub: cote_dazur
-  Comment generator:<generator object get_content at 0xb2e5a964>
-    Arrived at placeholder!
-
-Turquoise Moors: Sun Dec 14 14:22:16 2014
-Current sub: TurquoiseMoors
-  Comment generator:<generator object get_content at 0xb2e5a964>
-    Arrived at placeholder!
-
-PMs: Sun Dec 14 14:22:22 2014
-Command parts: [u'create', u'10', u'wall-stone']
-    Command time: Mon Dec 15 03:21:24 2014
-    Parsed command as ['eliminioa', u'create', [u'10', u'wall-stone'], 1418613684.0, <praw.objects.Message object at 0xb2f84fec>]
-User eliminioa is creating 10 wall-stones
-    Item to be created: wall-stone
-    Amount to be created: 10
-    Item cost: {u'stone': 5}
-    wall-stone requires 50.0 stones
-    User has 50 stones
-    User's new amount of stones is 50
-    Credited 10 wall-stones to eliminioa
-    Sent completion message to eliminioa
-User production: Sun Dec 14 14:22:24 2014
-    Producing material for red_october42
-    Land bonus: luxury
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for redis213
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for eliminioa
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for captaincrunchie
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for elaifiknow
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for myductape
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for zthousand
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for naughtypenguin
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for meshugganah
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for twilight_octavia
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing material for sahdee
-    Land bonus: material
-    Land penalty: food
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 material
-    Producing material for danster21
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 0.5
-    Produced resources: 0.5 material
-    Producing food for itking86
-    Land bonus: food
-    Land penalty: material
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 food
-    Producing material for cdos93
-    Land bonus: food
-    Land penalty: luxury
-    Bonus multiplier: 1
-    Produced resources: 1 material
-    Producing material for lolzrfunni
-    Land bonus: material
-    Land penalty: food
-    Bonus multiplier: 1.5
-    Produced resources: 1.5 material
+snooland: Tue Dec 16 13:02:04 2014
+Current sub: snooland
+  Comment generator:<generator object get_content at 0xb305625c>

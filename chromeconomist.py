@@ -1,41 +1,39 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python2.7
 
 #-------------------------------------------------------------------------------
-# Name:        module1
-# Purpose:
+# Name:        chromeconomist
+# Purpose:     To regulate the economy of the reddit based game Chroma.
 #
 # Author:      James Boggs
 #
 # Created:     10/04/2014
 # Copyright:   (c) James Boggs 2014
-# Licence:     <your licence>
+# Licence:     Beer license (You can use this all you want, but if you meet me you)
 #-------------------------------------------------------------------------------
 
-import EconBuffs
 import time
 import datetime
 import praw
 import json
 import string
-from inflect import *
+from inflect import engine
 
 class bot(object):
     def __init__ (self, reddit,EconomistInfo):
         self.log = open("ChromeconomistRunLog.txt","w+")
-        self.lands = ["midnight marsh","cote d'azure","oraistedearg"]
-        bot.log(self,"Lands: "+self.lands.__str__())
         self.landInfo = EconomistInfo["LandInfo"]
         self.userInfo = EconomistInfo["UserInfo"]
         self.itemInfo = EconomistInfo["ItemInfo"]
         self.data = {"LandInfo":self.landInfo,"UserInfo":self.userInfo,"ItemInfo":self.itemInfo}
+        self.lands = self.landInfo.keys()
+        bot.log(self,"Lands: "+self.lands.__str__())
         bot.log(self,"JSON info loaded")
         self.r = reddit
         bot.log(self,"Connected to Reddit")
         self.i = engine()
         self.trade_number = 0
         self.active_trades = dict()
-        self.recruit_id = '2bfmr6'
+        self.recruit_id = '2pd4di'
         self.mods = ['eliminioa','danster21','zthousand','twilight_octavia','cdos93','dalek1234']
         bot.iterate(self)
 
@@ -47,18 +45,20 @@ class bot(object):
         bot.log(self,"  Comment generator:" +comments.__str__())
         BotCommands = [] #bot command will be a list [author(str),action,resource]
         placeholder_ID = self.landInfo[land]["placeholder_ID"]
+        gotPlaceholder = False #make sure only the first comment is used as a place holder
         for comment in comments:
+            if not gotPlaceholder:
+                ref_id = comment.id
+                bot.log(self,"  Updated placeholder id to "+str(ref_id)+" @ "+str(time.asctime(time.gmtime(comment.created))))
+                self.landInfo[land]["placeholder_ID"] = ref_id
+                self.data["LandInfo"] = self.landInfo
+                gotPlaceholder = True
             if comment.id == placeholder_ID:
                 bot.log(self,"    Arrived at placeholder!\n")
                 print ("Arrived at placeholder!")
                 ref_id = comment.id
                 break
-            if ("#" in comment.body.lower()):
-                if len(BotCommands) == 0: #stores the comment id of the first new comment for reference
-                    ref_id = comment.id
-                    bot.log(self,"  Updated placeholder id to "+str(ref_id)+" @ "+str(time.asctime(time.gmtime(comment.created))))
-                    self.landInfo[land]["placeholder_ID"] = ref_id
-                    self.data["LandInfo"] = self.landInfo
+            if ("$$" in comment.body.lower()):
                 if str(comment.author).lower() not in self.userInfo:
                     print ("User "+str(comment.author).lower()+" not found")
                     bot.log(self,"  User "+str(comment.author).lower()+" not found, alerting")
@@ -66,8 +66,8 @@ class bot(object):
                 bot.log(self,"  New command found: "+comment.__str__())
                 rawCmd = comment.body.splitlines()
                 for line in rawCmd:
-                    if '#' in line:
-                        cmdLine = line.strip('#')
+                    if '$$' in line:
+                        cmdLine = line.strip('$$')
                         break
                 cmdParts = cmdLine.split()
                 cmdTime = comment.created
@@ -139,7 +139,7 @@ class bot(object):
             #resource[6] = the player the user is trading with
             elif action == 'trade':
                 if resource[0] == 'accept':
-                    trade_num = int(resource[1].strip("#"))
+                    trade_num = int(resource[1].strip("$$"))
                     print (author+" has accepted trade offer #"+str(trade_num))
                     bot.log(self,author+" has accepted trade offer #"+str(trade_num))
                     bot.accept_trade_offer(self,author,trade_num)
@@ -370,30 +370,34 @@ class bot(object):
     def register(self):
         thread = self.r.get_submission(submission_id = self.recruit_id,comment_sort = 'new')
         cmnts = thread.comments
-        recruit_links = self.userInfo.keys()
+        users = self.userInfo.keys()
         for cmnt in cmnts:
-            if str(cmnt.author).lower() not in recruit_links:
-                parts = cmnt.body.split()
+            if str(cmnt.author).lower() not in users:
+                base = False #is the user actually setting their base here
+                parts = cmnt.body.split('\n')
                 try:
                     for part in parts:
-                        if '#' in part:
+                        if '$$' in part:
                             raw_base = part
-                    base = raw_base.strip('#')
-                    base = base.replace('-',' ')
-                    base = base.replace('_',' ')
-                    base = base.replace('/r/','')
-                    base = base.replace('r/','')
-                    base = base.lower()
-                    if base not in self.landInfo.keys():
-                        base = 'midnight marsh'
-                        cmnt.reply('No base set, defaulting to the [Midnight Marsh](/r/MidnightMarsh)')
+                            base = raw_base.strip('$$')
+                            base = base.replace('-','')
+                            base = base.replace('_','')
+                            base = base.replace(' ','')
+                            base = base.replace('/r/','')
+                            base = base.replace('r/','')
+                            base = base.replace("'",'')
+                            base = base.lower()
+                            if base not in self.lands:
+                                base = 'midnight marsh'
+                                cmnt.reply('No base set, defaulting to the [Midnight Marsh](/r/MidnightMarsh)')
                 except ValueError:
                     base = 'midnight marsh'
                     cmnt.reply('No base set, defaulting to the [Midnight Marsh](/r/MidnightMarsh)')
-                print ("Adding new user "+str(cmnt.author).lower()+" to userInfo with citizenship in "+base+"!")
-                bot.log(self,"Adding new user "+str(cmnt.author).lower()+" to userInfo with citizenship in "+base+"!")
-                self.userInfo[str(cmnt.author).lower()]={"food": 0, "material": 0, "luxury": 0,"last_produced":0.0,"last_creation":0,"producing":'material',"home":base}
-                cmnt.reply('You have now registered as a citizen in '+base+'! By default, you are producing material goods.')
+                if base:
+                    print ("Adding new user "+str(cmnt.author).lower()+" to userInfo with citizenship in "+base+"!")
+                    bot.log(self,"Adding new user "+str(cmnt.author).lower()+" to userInfo with citizenship in "+base+"!")
+                    self.userInfo[str(cmnt.author).lower()]={"food": 0, "material": 0, "luxury": 0,"last_produced":0.0,"last_creation":0,"producing":'material',"home":base}
+                    cmnt.reply('You have now registered as a citizen in '+base+'! By default, you are producing material goods.')
         self.data["UserInfo"] = self.userInfo
 
     def iterate(self):
@@ -402,47 +406,72 @@ class bot(object):
         json.dump(self.data,chromaData)
         chromaData.close()
         while True:
-            for land in self.lands:
-                bot.log(self,land+': '+(time.asctime()))
-                self.landStats = self.landInfo[land]
-                bot.parseLand(self,land)
+            try:
+                for land in self.lands:
+                    bot.log(self,land+': '+(time.asctime()))
+                    self.landStats = self.landInfo[land]
+                    bot.parseLand(self,land)
+                    chromaData = open("EconomyInfo.json",'w')
+                    json.dump(self.data,chromaData)
+                    chromaData.close()
+                    self.log.flush()
+                print "Reading PMs"
+                newPMs = self.r.get_unread(True,True)
+                PMCommands = []
+                for PM in newPMs:
+                    if not PM.was_comment:
+                        PMCommands.append(PM)
+                        PM.mark_as_read()
+                bot.log(self,"PMs: "+str(time.asctime()))
+                bot.parsePMs(self,PMCommands)
+                print "Updating JSON file"
+                chromaData = open("EconomyInfo.json",'w')
+                json.dump(self.data,chromaData)
+                chromaData.close()
+                bot.log(self,"User production: "+str(time.asctime()))
+                print("User production")
+                for user in self.userInfo:
+                    bot.produce(self,user)
+                    chromaData = open("EconomyInfo.json",'w')
+                    json.dump(self.data,chromaData)
+                    chromaData.close()
+                    self.log.flush()
+                print "waiting 60 secs"
+                time.sleep(60)
+            except KeyboardInterrupt:
+                print "Closing program!"
+                exit
+            except:
                 chromaData = open("EconomyInfo.json",'w')
                 json.dump(self.data,chromaData)
                 chromaData.close()
                 self.log.flush()
-            print "Reading PMs"
-            newPMs = self.r.get_unread(True,True)
-            PMCommands = []
-            for PM in newPMs:
-                if not PM.was_comment:
-                    PMCommands.append(PM)
-                    PM.mark_as_read()
-            bot.log(self,"PMs: "+str(time.asctime()))
-            bot.parsePMs(self,PMCommands)
-            print "Updating JSON file"
-            chromaData = open("EconomyInfo.json",'w')
-            json.dump(self.data,chromaData)
-            chromaData.close()
-            bot.log(self,"User production: "+str(time.asctime()))
-            print("User production")
-            for user in self.userInfo:
-                bot.produce(self,user)
-                chromaData = open("EconomyInfo.json",'w')
-                json.dump(self.data,chromaData)
-                chromaData.close()
-                self.log.flush()
-            print "waiting 60 secs"
-            time.sleep(60)
-##        #except:
-##            chromaData = open("EconomyInfo.json",'w')
-##            json.dump(self.data,chromaData)
-##            chromaData.close()
-##            self.log.flush()
-##            bot.iterate(self)
+                bot.iterate(self)
 
     def log(self,text):
         self.log.write(text+'\n')
         self.log.flush()
+    
+    def failable(f):
+        def wrapped(*args, **kwargs):
+            try:
+                return f(*args, **kwargs)
+            except praw.errors.APIException:
+                full = traceback.format_exc()
+                logging.warning("Reddit API call failed! %s" % full)
+                return None
+            except ConnectionError:
+                full = traceback.format_exc()
+                logging.warning("Connection error: %s", full)
+            except (Timeout, socket.timeout, socket.error):
+                full = traceback.format_exc()
+                logging.warning("Socket timeout! %s" % full)
+                return None
+            except HTTPError:
+                full = traceback.format_exc()
+                logging.warning("HTTP error timeout! %s" % full)
+                return None
+        return wrapped
 
 if __name__ == '__main__':
     reddit = praw.Reddit('Chromeconomist Testing')
