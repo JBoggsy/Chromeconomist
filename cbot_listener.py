@@ -14,7 +14,8 @@ Big thanks to redditor /u/Reostra for looking over this code and making suggesti
 
 import socket
 import json
-from Chromeconomist import failable
+from aux_scripts import failable, readTerritory
+
 
 host = ''
 port = 17236
@@ -27,15 +28,6 @@ def openConnection(host=host,port=port,backlog=backlog):
     s.bind((host,port))
     s.listen(backlog)
 
-def readTerritory(territory):
-    territory = str(territory)
-    territory = territory.replace('-','')
-    territory = territory.replace('_','')
-    territory = territory.replace('/r/','')
-    territory = territory.replace('r/','')
-    territory = territory.replace("'",'')
-    territory = territory.lower()
-    return territory
 
 @failable
 def parseRequest(request):
