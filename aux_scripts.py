@@ -8,6 +8,7 @@ import praw
 import traceback
 import socket
 from requests.exceptions import ConnectionError, HTTPError, Timeout
+import logging as log
 
 def failable(f):
     def wrapped(*args, **kwargs):

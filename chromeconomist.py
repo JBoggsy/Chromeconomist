@@ -11,12 +11,12 @@ Licence:     Beer license (You can use this all you want, but if you
             
 Current features: Allows users to register with a subreddit as a home
 territory, change their production type, create from a list of items,
-check their account balance, and trade ith other players. At the moment,
+check their account balance, and trade with other players. At the moment,
 all data is stored on a humongous JSON file is a mess of nested lists
 and dictionaries. 
 
-Inr the future:
-Convert to PEP8 guidlines, turn users, lands, trades, and commands into
+In the future:
+Convert to PEP8 guidelines, turn users, lands, trades, and commands into
 classes, create a comment aggregator and sorter, refactor command 
 extraction into a separate method, and add more features and items.
 """
@@ -37,7 +37,7 @@ import praw
 from aux_scripts import failable, readTerritory, flattenComments
 from inflect import engine
 
-class Bot(object):
+class EconomyBot(object):
     def __init__ (self, reddit,economist_info):
         log.basicConfig(filename="ChromeconomistRunLog.txt",level=log.WARNING,
                         format="%(levelname)s @ %(asctime)s : %(message)s")
@@ -508,5 +508,5 @@ if __name__ == "__main__":
         economist_info = load(chroma_data)
     except ValueError as e:
         print e
-    bot = Bot(reddit,economist_info)
+    bot = EconomyBot(reddit,economist_info)
     bot.iterate()
